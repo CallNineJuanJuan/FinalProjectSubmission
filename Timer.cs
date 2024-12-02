@@ -32,6 +32,7 @@ public class Timer : MonoBehaviour
             }
             else
             {
+                remainingTime = 0;
                 Debug.Log("Player failed to reach the exit.");
                 timerText.color = Color.red;
                 EndLevel(caughtBackgroundImageCanvasGroup, true);
