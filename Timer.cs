@@ -25,13 +25,14 @@ public class Timer : MonoBehaviour
         }
         else if (remainingTime <= 0)
         {
-            if(!m_IsPlayerAtExit)
+            if (m_IsPlayerAtExit == true)
             {
-                exitBackgroundImageCanvasGroup.alpha = 1;
+                Debug.Log("Player reached the exit!");
+                EndLevel(exitBackgroundImageCanvasGroup, false);
             }
             else
             {
-                remainingTime = 0;
+                Debug.Log("Player failed to reach the exit.");
                 timerText.color = Color.red;
                 EndLevel(caughtBackgroundImageCanvasGroup, true);
             }
@@ -47,6 +48,7 @@ public class Timer : MonoBehaviour
 
         if (m_Timer > fadeDuration + displayImageDuration)
         {
+            m_Timer = 0;
             if (doRestart)
             {
                 SceneManager.LoadScene(0);
