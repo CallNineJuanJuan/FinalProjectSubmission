@@ -23,11 +23,18 @@ public class Timer : MonoBehaviour
         {
             remainingTime -= Time.deltaTime;
         }
-        else if (remainingTime <= 0 && m_IsPlayerAtExit)
+        else if (remainingTime <= 0)
         {
-            remainingTime = 0;
-            timerText.color = Color.red;
-            EndLevel(caughtBackgroundImageCanvasGroup, true);
+            if(!m_IsPlayerAtExit)
+            {
+                exitBackgroundImageCanvasGroup.alpha = 1;
+            }
+            else
+            {
+                remainingTime = 0;
+                timerText.color = Color.red;
+                EndLevel(caughtBackgroundImageCanvasGroup, true);
+            }
         }
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
